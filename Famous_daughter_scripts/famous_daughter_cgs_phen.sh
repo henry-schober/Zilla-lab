@@ -1,7 +1,7 @@
-#this script is the first half of our ssd script as this half would produce the output files cgs_30 and phenotypes_all_no_small_first_lac. This will allow us to use the same files for the trest of the trait analysis
+#This script is to give us the both the new cgs file and phenotype file to be used in our famous bull two trait analysis
 
 
-ln -s /data/henry/henrys/phenotypes/phen_red_all .
+ln -s /data/henry/henrys/phenotypes/famous_daughter_all.phen .
 ln -s /data/breno/ped.noupg.sort .
 
 
@@ -12,7 +12,9 @@ export OMP_STACKSIZE=1G
 INBREEDING
 -no inbreeding
 
-echo renum_milk.par | renumf90 | tee renum_milk_all.log
+#Check to make sure the renum par file is updated to correct data file and pheno file, no need to recalculate variances
+
+echo renum_milk.par | renumf90 | tee renum_milk_bull30.log
 
 #This is a test to see the duplication#
 
@@ -77,6 +79,6 @@ join -1 1 -2 1 ids_single renadd.sort | awk '{print $10}' | sort +0 -1 > ids.red
 
 
 
-sort +0 -1  phen_red_all > phen_all.sort
+sort +0 -1  famous_daughter_all.phen > phen_all.sort
 
-join ids.red.all phen_all.sort > phenotypes_all_no_small_first_lac
+join ids.red.all phen_all.sort > phenotypes_bull30_first_lac
