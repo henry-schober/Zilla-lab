@@ -1,10 +1,16 @@
+ln -s /data/henry/henrys/phenotypes/phenotypes_ca_no_small_first_lac .  #adding soft link to phenotype files
+ln -s /data/henry/henrys/phenotypes/phenotypes_ne_no_small_first_lac .
+
 wc -l  phenotypes_ca_no_small_first_lac #counting how many animals
 wc -l  phenotypes_ne_no_small_first_lac
 
 cat phenotypes_ca_no_small_first_lac phenotypes_ne_no_small_first_lac > phenotypes.all #creating a single file
 cp /data/breno/ped.noupg .  #copying original files
 
-echo renum.par | renumf90 | tee renum.log #running renum
+#grabbed the renumf par file from the original two trait directory
+ln -s /data/henry/henrys/first_lac/two_trait/milk/renum_milk.par .
+
+echo renum_milk.par | renumf90 | tee renum.log #running renum
 
 awk '{print $1}' phenotypes_ca_no_small_first_lac | sort +0 -1 > ids_ca_original #only the ids from CA cows
 awk '{print $1}' phenotypes_ne_no_small_first_lac | sort +0 -1 > ids_ne_original #only ids from NE cows
