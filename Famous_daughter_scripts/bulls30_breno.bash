@@ -10,6 +10,8 @@ cp /data/breno/ped.noupg .  #copying original files
 #grabbed the renumf par file from the original two trait directory
 ln -s /data/henry/henrys/first_lac/two_trait/milk/renum_milk.par .
 
+#needs datafile; phen_red_all
+
 echo renum_milk.par | renumf90 | tee renum.log #running renum
 
 awk '{print $1}' phenotypes_ca_no_small_first_lac | sort +0 -1 > ids_ca_original #only the ids from CA cows
