@@ -1,5 +1,5 @@
 #This script is to give us the both the new cgs file and phenotype file to be used in our famous bull two trait analysis
-
+#First run the bulls30_breno.bash script
 
 ln -s /data/henry/henrys/phenotypes/famous_daughter_all.phen .
 ln -s /data/breno/ped.noupg.sort .
