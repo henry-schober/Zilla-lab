@@ -1,9 +1,10 @@
 #This script is to give us the both the new cgs file and phenotype file to be used in our famous bull two trait analysis
 #First run the bulls30_breno.bash script
+#Needs phen_red_all for renum_milk.par
 
 ln -s /data/henry/henrys/phenotypes/famous_daughter_all.phen .
 ln -s /data/breno/ped.noupg.sort .
-
+ln -s /data/henry/henrys/phenotypes/phen_red_all
 
 
 ulimit -s unlimited
