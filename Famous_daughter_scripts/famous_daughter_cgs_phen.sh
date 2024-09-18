@@ -1,10 +1,8 @@
 #This script is to give us the both the new cgs file and phenotype file to be used in our famous bull two trait analysis
 #First run the bulls30_breno.bash script
-#Needs phen_red_all for renum_milk.par
 
 ln -s /data/henry/henrys/phenotypes/famous_daughter_all.phen .
 ln -s /data/breno/ped.noupg.sort .
-ln -s /data/henry/henrys/phenotypes/phen_red_all
 
 
 ulimit -s unlimited
@@ -14,6 +12,9 @@ INBREEDING
 -no inbreeding
 
 #Check to make sure the renum par file is updated to correct data file and pheno file, no need to recalculate variances
+#Change renum_milk.par pheno file to famous_daughter_all.phen
+
+ln -s /data/henry/henrys/first_lac/two_trait/milk/renum_milk.par .
 
 echo renum_milk.par | renumf90 | tee renum_milk_bull30.log
 
