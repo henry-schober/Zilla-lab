@@ -3,15 +3,15 @@ cd /data/henry/henrys/first_lac/new_england/milk
 
 sh combined_ne_w_var_milk.sh
 
-cp cgs_30 ../.
-cp phenotypes_ne_no_small_first_lac ../.
+mv cgs_30 ../.
+mv phenotypes_ne_no_small_first_lac ../.
 
 cd /data/henry/henrys/first_lac/california/milk
 
 sh combined_ca_w_var_milk.sh
 
-cp cgs_30 ../.
-cp phenotypes_ca_no_small_first_lac ../.
+mv cgs_30 ../.
+mv phenotypes_ca_no_small_first_lac ../.
 
 
 cd /data/henry/henrys/first_lac/combined/ne
