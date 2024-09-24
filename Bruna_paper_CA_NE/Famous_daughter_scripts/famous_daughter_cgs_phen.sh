@@ -39,7 +39,7 @@ awk '$2>29' cgs > cgs_30
 
 awk '{print $3}' cgs_30 | sort > cg30.sort #7758 cgs
 
-sort +2 -3 renf90.dat > renf90.sort
+sort +1 -2 renf90.dat > renf90.sort
 
 join -1 1 -2 3 cg30.sort renf90.sort > renf90.temp
 
@@ -53,7 +53,7 @@ awk '{print $2,$3,$1,$4,$5,$6,$7,$8,$9,$10}' renf90.temp > renf90.clean.dat
 awk '{print $4}' renf90.clean.dat | sort | uniq -c > hxs
 awk '$1>3' hxs | awk ' {print $2}' | sort > hxs_4 #22k
 
-sort +3 -4 renf90.temp > renf90.temp.sort
+sort +2 -3 renf90.temp > renf90.temp.sort
 join -1 1 -2 4 hxs_4  renf90.temp.sort >  renf90.temp2
 
 
