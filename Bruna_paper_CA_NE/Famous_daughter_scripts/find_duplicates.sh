@@ -1,6 +1,6 @@
 cd /data/breno/test_first_lactation
 
-awk 'NR>4' ../ll ../yld_phenotypes.txt | awk '{print $1,$2,$3,$4,$5,$6}' > first_columns #create a file with id, mgm group, herd by sire, age parity, yob, and parity
+awk 'NR>4' ../yld_phenotypes.txt | awk '{print $1,$2,$3,$4,$5,$6}' > first_columns #create a file with id, mgm group, herd by sire, age parity, yob, and parity
 
 awk '{print $1,$2,$3,$4,$5,$6,substr($2,1,2)}' first_columns > state_all #first two bytes are the state #add state in column 7
 
