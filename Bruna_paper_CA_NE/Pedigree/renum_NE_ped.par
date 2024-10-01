@@ -1,0 +1,38 @@
+DATAFILE
+phen_red_NE
+TRAITS
+9                              # doesn't matter what trait for the first renumf analysis
+FIELDS_PASSED TO OUTPUT
+2 4                            # GENOTYPED variable column
+WEIGHT(S)
+
+RESIDUAL_VARIANCE
+10                             # From VARCOMP for DAYS using ssGBLUP
+EFFECT
+2 cross alpha                   #1 mgm group
+EFFECT
+3 cross alpha                   #2 herd vs sire (should be random)
+RANDOM
+diagonal
+(CO)VARIANCES
+10
+EFFECT
+4 cross alpha                  #3 age parity of dam
+EFFECT
+5 cross alpha                  #4 birth year (to be tested, should be included in mgm group?)
+EFFECT
+6 cross alpha                  #5 parity
+EFFECT
+1 cross alpha                  #6 Random animal effect
+RANDOM
+animal
+FILE
+ped.noupg
+FILE_POS
+1 2 3
+#SNP_FILE
+#snp47383.n1949.ihnv.tlum2019.snp
+PED_DEPTH
+3
+(CO)VARIANCES
+10
