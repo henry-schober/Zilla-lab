@@ -1,6 +1,7 @@
 # This file creates the original reduced pheno file for both CA and NE 
 
 ln -s /data/unziped/yld_phenotypes.txt .
+ln -s /data/unziped/pedigree.txt .
 
 awk 'NR>4' yld_phenotypes.txt | awk '{print $1,$2}' > ids_all #create a file with only id and mgm group
 awk 'NR>4' yld_phenotypes.txt | sort +0 -1 > pheno1
