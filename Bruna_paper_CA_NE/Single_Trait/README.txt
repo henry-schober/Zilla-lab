@@ -4,7 +4,7 @@
 
 Project: Bruna analysis of Dairy Cows CA vs NE
 Created by: Henry Schober 9/26/24
-Modified by: Henry Schober 9/26/24
+Modified by: Henry Schober 10/1/24
 
 You are here: Single Trait model of CA or NE
 
