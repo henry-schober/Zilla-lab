@@ -7,4 +7,4 @@ awk '$1>20' ho.bulls > ho.bulls20 #161580
 awk '$1>40' ho.bulls > ho.bulls40 #93995
 awk '$1>60' ho.bulls > ho.bulls60 #70193
 awk '$1>100' ho.bulls > ho.bulls100 #46044
-awk '$1>120' ho.bulls > ho.bulls120 #38970
+awk '$1>120' ho.bulls > ho.bulls120 #38970, There are 38970 bulls with 120+ daughters
