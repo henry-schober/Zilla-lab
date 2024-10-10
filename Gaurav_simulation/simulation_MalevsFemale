@@ -58,7 +58,7 @@ join -1 1 -2 1 solutions.sort ids.gen10 > solutions.gen10_M #gebv
 
 join -1 1 -2 1 solutions.sort tbv.gen10 > sol_tv.gen10_M  #tbv
 
-join -1 1 -2 1 solutions.gen10_set1 tbv.gen10 > val.M.gen10 #to validate
+join -1 1 -2 1 solutions.gen10_M tbv.gen10 > val.M.gen10 #to validate
 
 ####Training population- Males 
 
