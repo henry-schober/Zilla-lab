@@ -111,11 +111,10 @@ module load r/4.2.2
 R #enter into R
 
 #1.Correlation between gebv
-mkdir simulation_sex
 #Note- change the directory from where you can pull your files needed
 
-M<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/gen_M_train/val.M.gen10')
-F<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/gen_F_train/val.F.gen10')
+M<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/M_train/val.M.gen10')
+F<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/F_train/val.F.gen10')
 
 
 
@@ -136,8 +135,8 @@ cor(M_s[,6],F_s[,6])
 M_g<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/gen_M_train/val.M.gen10')
 F_g<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/gen_F_train/val.F.gen10')
 
-M_t<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/gen_M_train/sol_tv.gen10_M')
-F_t<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/gen_F_train/sol_tv.gen10_F')
+M_t<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/M_train/sol_tv.gen10_M')
+F_t<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/F_train/sol_tv.gen10_F')
 
 
 cor(M_g[,2],M_t[,3]) 
