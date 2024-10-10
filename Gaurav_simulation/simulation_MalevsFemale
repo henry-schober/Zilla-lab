@@ -101,7 +101,7 @@ echo post.par | postGSf90 | tee ssgblup_F_post.log #run postgs
 awk '$2==2' solutions | awk ' {print $3, $4}' | sort +0 -1 > solutions.sort #save ebvs for generation 10
 join -1 1 -2 1 solutions.sort ids.gen10 > solutions.gen10_F # gebv
 join -1 1 -2 1 solutions.sort tbv.gen10 > sol_tv.gen10_F # tbv
-join -1 1 -2 1 solutions.gen10_set2 tbv.gen10 > val.F.gen10 #to validate
+join -1 1 -2 1 solutions.gen10_F tbv.gen10 > val.F.gen10 #to validate
 
 
 
