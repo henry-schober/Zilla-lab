@@ -85,7 +85,7 @@ R #enter into R
 all<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_test/simulation_zilla/all_train/val.all.gen10')
 even<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_test/simulation_zilla/even_train/val.even.gen10')
 odd<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_test/simulation_zilla/odd_train/val.odd.gen10')
-odd_gen<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_hank/simulation_odd_gen/oddgen_train')
+odd_gen<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_hank/simulation_odd_gen/oddgen_train/val.oddgen.gen10')
 
 
 cor(all) #
