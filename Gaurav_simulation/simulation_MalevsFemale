@@ -111,42 +111,39 @@ module load r/4.2.2
 R #enter into R
 
 #1.Correlation between gebv
-
+mkdir simulation_sex
 #Note- change the directory from where you can pull your files needed
 
-set1<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_test/simulation_zilla/gen_M_train/val.M.gen10')
-set2<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_test/simulation_zilla/gen_F_train/val.F.gen10')
+M<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/gen_M_train/val.M.gen10')
+F<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/gen_F_train/val.F.gen10')
 
 
 
-cor(set1) #
-cor(set2) #
-cor(set3) #
+cor(M) #
+cor(F) #
 
-cor(set1[,2],set2[,2]) # 0.81
-cor(set1[,2],set3[,2]) # 0.83
-cor(set2[,2],set3[,2]) # 0.40
+cor(M[,2],F[,2])
 
 #2. Correlation between snp effects
-set1_s<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_test/simulation_zilla/gen_M_train/snp_sol',header=T)
-set2_s<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_test/simulation_zilla/gen_F_train/snp_sol',header=T)
 
-cor(set1_s[,6],set2_s[,6]) # 0.094
-cor(set1_s[,6],set3_s[,6]) #    0.050
+M_s<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/gen_M_train/snp_sol',header=T)
+F_s<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/gen_F_train/snp_sol',header=T)
+
+cor(M_s[,6],F_s[,6]) 
 
 #3.Accuracy(Correlation between GEBV and TBV)
 
-set1_g<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_test/simulation_zilla/gen_M_train/val.M.gen10')
-set2_g<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_test/simulation_zilla/gen_F_train/val.F.gen10')
+M_g<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/gen_M_train/val.M.gen10')
+F_g<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/gen_F_train/val.F.gen10')
 
-set1_t<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_test/simulation_zilla/gen_M_train/sol_tv.gen10_M')
-set2_t<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_test/simulation_zilla/gen_F_train/sol_tv.gen10_F')
+M_t<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/gen_M_train/sol_tv.gen10_M')
+F_t<-read.table('/gpfs/sharedfs1/zilla-lab/simulation_zilla/simulation_sex/gen_F_train/sol_tv.gen10_F')
 
 
-cor(set1_g[,2],set1_t[,3]) #0.20
-cor(set2_g[,2],set2_t[,3])#0.29
+cor(M_g[,2],M_t[,3]) 
+cor(F_g[,2],F_t[,3])
 
 
 #or
-cor(set1_t[,2],set1_t[,3])#0.20
-cor(set2_t[,2],set2_t[,3])#0.29
+cor(M_t[,2],M_t[,3])
+cor(F_t[,2],M_t[,3])
