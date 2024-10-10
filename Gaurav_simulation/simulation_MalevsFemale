@@ -63,8 +63,8 @@ join -1 1 -2 1 solutions.gen10_set1 tbv.gen10 > val.M.gen10 #to validate
 ####Training population- Males 
 
 cd ..
-mkdir gen_F_train
-cd gen_F_train
+mkdir F_train
+cd F_train
 
 #create a file with Females only
 awk '$2==F' ../renf90.train > renf90.dat #copying the training data set and saving it as renf90.dat
