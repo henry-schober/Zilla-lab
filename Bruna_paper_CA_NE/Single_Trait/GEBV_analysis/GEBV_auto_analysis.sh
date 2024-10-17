@@ -13,6 +13,9 @@ ln -s /data/henry/henrys/first_lac/california/phenotypes_ca_no_small_first_lac .
 ln -s /data/henry/henrys/pedigrees/ped_CA/new_ped_ca . 
 #cp /data/henry/henrys/first_lac/california/cgs_30 .
 
+ulimit -s unlimited
+export OMP_STACKSIZE=128M
+
 #here we want to manually cp the renum_ca_milk.par to renum.red.par file and then insert the previous variances that we got
 cp renum_ca_milk.par renum.red.par
 sed 's:phen_red_ca:phenotypes_ca_no_small_first_lac:g' renum.red.par > renum.r.par
@@ -21,8 +24,6 @@ echo renum.r.par | renumf90 | tee renum_ca_r.log
 
 echo "OPTION use yams" >> renf90.par
 
-ulimit -s unlimited
-export OMP_STACKSIZE=128M
 
 echo renf90.par  | blupf90+ | tee aireml_ca.log
 
