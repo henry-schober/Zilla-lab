@@ -1,4 +1,4 @@
-R
+#!/usr/bin/Rscript
 
 #assigning values to files
 
