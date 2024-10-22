@@ -42,15 +42,14 @@ for x in $stateID
             ln -s /data/henry/henrys/first_lac/${x}/phenotypes_${x}_no_small_first_lac .
             ln -s /data/henry/henrys/pedigrees/ped_${x}/new_ped_${x} .
 
-            cp renum_${x}_${y}.par renum.red.par
+            cp ../renum_${x}_${y}.par renum.red.par
             sed "s:phen_red_${x}:phenotypes_${x}_no_small_first_lac:g" renum.red.par > renum.r.par
-
-            echo renum.r.par | renumf90 | tee renum_${x}_${y}_r.log
-
-            echo "OPTION use yams" >> renf90.par
 
             ulimit -s unlimited
             export OMP_STACKSIZE=128M
+            echo renum.r.par | renumf90 | tee renum_${x}_${y}_r.log
+
+            echo "OPTION use yams" >> renf90.par
 
             echo renf90.par  | blupf90+ | tee aireml_${x}.log
 
