@@ -5,7 +5,7 @@
 #this script will create a new pedigree file for both CA and NE data with less animals
 ln -s /data/breno/ped.noupg .
 
-state=$( at "CA_NE.txt")
+state=$(cat "CA_NE.txt")
 for x in $state
     do
         mkdir ped_${x}
@@ -19,9 +19,10 @@ for x in $state
 
         ln -s ../ped.noupg .
 
-        ln -s ../Phenotype/phen_red_${x}
+        ln -s ../../phenotypes/phen_red_${x}
 
         #this par file is different than the other as it had ped.noupg as its pedigree file
+        cp ../renum_${x}_ped.par .
         echo renum_${x}_ped.par | renumf90 | tee renum_${x}_large.log
 
         awk '{print $10}' renadd06.ped | sort > ids.reduced.sort
