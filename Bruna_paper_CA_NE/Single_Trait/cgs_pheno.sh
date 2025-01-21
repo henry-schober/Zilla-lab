@@ -22,7 +22,7 @@ for x in $state
 
         echo renum_${x}.par | renumf90 | tee renum_${x}.log
         echo "OPTION method VCE" >>  renf90.par
-        echo "OPTIONS use yams" >> renf90.par
+        echo "OPTION use yams" >> renf90.par
         awk ' $1!=0' renf90.dat > renf90.temp
 
 
