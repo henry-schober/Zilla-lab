@@ -5,7 +5,7 @@
 #this script will create a new pedigree file for both CA and NE data with less animals
 ln -s /data/breno/ped.noupg .
 
-state=$(cat "CA_NE.txt")
+state=$(cat "TX_WI.txt")
 for x in $state
     do
         mkdir ped_${x}
@@ -19,7 +19,7 @@ for x in $state
 
         ln -s ../ped.noupg .
 
-        ln -s ../../phenotypes/phen_red_${x}
+        ln -s ../../phenotypes/TX_WI_phen/phen_red_${x}
 
         #this par file is different than the other as it had ped.noupg as its pedigree file
         cp ../renum_${x}_ped.par .
@@ -34,9 +34,8 @@ for x in $state
 
 
 #how many phenotypes?
-wc -l phen_red_CA
-# 1178770 phen_red_ca
-wc -l phen_red_NE
+wc -l phen_red_TX
+wc -l phen_red_WI
 #how many pedigrees before renum?
 wc -l /data/breno/ped.noupg
 #82223611 ../ped.noupg
