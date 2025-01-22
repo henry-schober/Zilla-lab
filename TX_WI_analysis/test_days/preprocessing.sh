@@ -14,7 +14,7 @@
     #sort +0 -1 all_testday_seg.txt > sorted_all_testday_seg.txt
     #join -1 1 -2 1 sorted_all_testday_seg.txt 5_rec_IDs > 5_rec_testdays.txt
 
-awk '$5==1 && $6>=5' all_testday_seg.txt > 5_rec_firstlac_td.txt #select for first lactation and at least 5 test days total
+awk '$5==1 && $6>5' all_testday_seg.txt > 5_rec_firstlac_td.txt #select for first lactation and at least 5 test days total
 
 awk '$7>= 5 && $7 <= 305' 5_rec_firstlac_td.txt > filtered_testday.txt #this gets us our final filtered file that contains the testday info selecting for animals with the dim being between 5 and 305
 
