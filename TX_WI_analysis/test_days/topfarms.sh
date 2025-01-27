@@ -5,7 +5,7 @@
 awk '{print $4}' merged_filtered_data.txt | sort | uniq -c | sort +0 -1 -nr > top_farms.ids #gets us the farm ids with how many records they have
 
 
-awk '{print $1, $4}' merged_filtered_data.txt | sort -u -k1,1 | awk '{print $2}' | uniq -c | sort +0 -1 -nr > top_farms_animals.id #get us the famr ids with how many cows are at that farm
+awk '{print $1, $4}' merged_filtered_data.txt | sort -u -k1,1 | awk '{print $2}' | uniq -c | sort +0 -1 -nr > top_farms_animals.id #get us the farm ids with how many cows are at that farm
 
 awk '{print $1}' top_farms_animals.id > temp_sum.txt #gets us just the amount of animals per each farm
 
@@ -24,3 +24,11 @@ while read -r value; do
     fi
 done < temp_sum.txt > sum_response
     
+head -95 top_farms_animals.id | awk '{print $2}' > top95_farms.id
+
+sort top95_farms.id > top95_sorted.id
+
+awk '{print $4, $0}' merged_filtered_data.txt |sort +0 -1 > sorted_filtered_data.txt
+
+join -1 1 -2 1 top95_sorted.id sorted_filtered_data.txt > top95_farm_data.txt
+
