@@ -30,5 +30,4 @@ sort top95_farms.id > top95_sorted.id
 
 awk '{print $4, $0}' merged_filtered_data.txt |sort +0 -1 > sorted_filtered_data.txt
 
-join -1 1 -2 1 top95_sorted.id sorted_filtered_data.txt > top95_farm_data.txt
-
+grep -F -f top95_sorted.id sorted_filtered_data.txt > top95_farms_data.txt #this gets us 4,892,500 records
