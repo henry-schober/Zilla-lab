@@ -22,8 +22,16 @@ awk 'BEGIN { FS=OFS=" " }
         print $0, age_of_animal_in_years, herd_test_day, stage_of_lactation
 }' "top95_clean" > "top95_added_effects.txt"
 
+#adding random animal effect (just their ID's from the crossreference)
+
+awk ' NR > 2 {print}' crossreferences.txt | awk '{print $1, $2}' | sort +1 -2 > Xref_id
+
+sort +0 -1 top95_added_effects.txt > sorted_top95_ae.txt
+
+join -1 2 -2 1 Xref_id sorted_top95_ae.txt | awk '{print $1, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $2}' > top95_phen
+
 # Now lets split this data up and add the files to different directories based on the state
 
-awk '$4~ /^35/' top95_added_effects.txt > ./WI/phen_WI
+awk '$4~ /^35/' top95_phen > ./WI/phen_WI
 
-awk '$4~ /^74/' top95_added_effects.txt > ./TX/phen_TX
+awk '$4~ /^74/' top95_phen > ./TX/phen_TX
