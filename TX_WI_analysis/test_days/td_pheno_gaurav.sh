@@ -1,6 +1,6 @@
 #This script was used in Gaurav's test day
 
-awk '{print $2, $3, $4, $5, $6, $7, $8, $9}' top95_farms_data.txt > top95_clean
+awk '{print $2, $3, $4, $5, $6, $7, $8, $9}' top133_farms_data.txt > top133_clean
 
 # Remove rows where dim_testday > 305 and add new columns: age_of_animal_in_years, herd_test_day, stage_of_lactation
 awk 'BEGIN { FS=OFS=" " }
@@ -20,18 +20,20 @@ awk 'BEGIN { FS=OFS=" " }
 
         # Print original data along with the new columns
         print $0, age_of_animal_in_years, herd_test_day, stage_of_lactation
-}' "top95_clean" > "top95_added_effects.txt"
+}' "top133_clean" > "top133_added_effects.txt"
 
 #adding random animal effect (just their ID's from the crossreference)
 
 awk ' NR > 2 {print}' crossreferences.txt | awk '{print $1, $2}' | sort +1 -2 > Xref_id
 
-sort +0 -1 top95_added_effects.txt > sorted_top95_ae.txt
+sort +0 -1 top133_added_effects.txt > sorted_top133_ae.txt
 
-join -1 2 -2 1 Xref_id sorted_top95_ae.txt | awk '{print $1, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $2}' > top95_phen
+join -1 2 -2 1 Xref_id sorted_top133_ae.txt | awk '{print $1, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $2}' > top133_phen # 4024208 records
+
+
 
 # Now lets split this data up and add the files to different directories based on the state
 
-awk '$4~ /^35/' top95_phen > ./WI/phen_WI
+awk '$4~ /^35/' top133_phen > ./WI/phen_WI
 
-awk '$4~ /^74/' top95_phen > ./TX/phen_TX
+awk '$4~ /^74/' top133_phen > ./TX/phen_TX
