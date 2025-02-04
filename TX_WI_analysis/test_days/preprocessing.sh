@@ -22,4 +22,7 @@ awk '{print $1}' filtered_testday.txt | uniq -c | sort -n | awk '$1>5' | awk '{p
 
 sort +0 -1 filtered_testday.txt > filtered_testday_sorted.txt
 
-join -1 1 -2 1 cross_5_rec_post_filter.id filtered_testday_sorted.txt > merged_filtered_data.txt
+join -1 1 -2 1 cross_5_rec_post_filter.id filtered_testday_sorted.txt > joined_merged_filtered_data.txt
+
+awk '$1 ~ /^HO/' joined_merged_filtered_data.txt > merged_filtered_data.txt #get holsteins only
+
