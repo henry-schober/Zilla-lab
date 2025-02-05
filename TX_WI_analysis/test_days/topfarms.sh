@@ -1,4 +1,4 @@
-#!/bin/bash
+
 
 # this script is to be ran after preprocessing.sh, this is to help us get the top farms
 
@@ -6,27 +6,40 @@ awk '{print $4}' merged_filtered_data.txt | sort | uniq -c | sort +0 -1 -nr > to
 
 awk '{print $1, $4}' merged_filtered_data.txt | sort -u -k1,1 | awk '{print $2}' | uniq -c | sort +0 -1 -nr > top_farms_animals.id #get us the farm ids with how many cows are at that farm, Holsteins only
 
-awk '{print $1}' top_farms_animals.id > temp_sum.txt #gets us just the amount of animals per each farm
+awk '$2 ~ /^35/' top_farms_animals.id > top_WI.ids
 
-#start of while loop
-sum=0
-line_number=0
-while read -r value; do
-    line_number=$((line_number + 1))
-    sum=$((sum + value))
-    echo "Current sum: $sum (Line: $line_number)"
-    
-    # Check if the sum has reached or exceeded 150000
-    if [ "$sum" -ge 150000 ]; then
-        echo "Sum reached 150000 or more at line $line_number. Stopping."
-        break
-    fi
-done < temp_sum.txt > sum_response #we get around 125k animals at the top 133 farms
-    
-head -133 top_farms_animals.id | awk '{print $2}' > top133_farms.id
+awk '$2 ~ /^74/' top_farms_animals.id > top_TX.ids
 
-sort top133_farms.id > top133_sorted.id
+awk '{print $1}' top_WI.ids > temp_sum_WI.txt #gets us just the amount of animals per each farm
+
+awk '{print $1}' top_TX.ids > temp_sum_TX.txt #gets us just the amount of animals per each farm
 
 awk '{print $4, $0}' merged_filtered_data.txt |sort +0 -1 > sorted_filtered_data.txt
 
-grep -F -f top133_sorted.id sorted_filtered_data.txt > top133_farms_data.txt 
+#start of while loop
+
+for x in temp_sum_WI.txt temp_sum_TX.txt
+    do
+        prefix=$(echo "$x" | cut -d "." -f 1 | cut -d "_" -f 3)
+        sum=0
+        line_number=0
+        while read -r value; do
+            line_number=$((line_number + 1))
+            sum=$((sum + value))
+            echo "Current sum: $sum (Line: $line_number)"
+            
+            # Check if the sum has reached or exceeded 150000
+            if [ "$sum" -ge 75000 ]; then
+                echo "Sum reached 75000 or more at line $line_number. Stopping."
+
+                head "-$line_number" top_${prefix}.ids | awk '{print $2}' > top_${line_number}_${prefix}.id
+
+                sort top_${line_number}_${prefix}.id > top_${line_number}_${prefix}_sorted.id
+
+                grep -F -f top_${line_number}_${prefix}_sorted.id sorted_filtered_data.txt > top_${line_number}_${prefix}_data.txt
+                break
+            fi
+        done < ${x} > sum_response_${prefix} 
+done
+
+    
