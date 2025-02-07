@@ -4,7 +4,7 @@
 
 awk '{print $4}' merged_filtered_data.txt | sort | uniq -c | sort +0 -1 -nr > top_farms.ids #gets us the farm ids with how many records they have for Holsteins only
 
-awk '{print $1, $4}' merged_filtered_data.txt | sort -u -k1,1 | awk '{print $2}' | uniq -c | sort +0 -1 -nr > top_farms_animals.id #get us the farm ids with how many cows are at that farm, Holsteins only
+awk '{print $1, $4}' merged_filtered_data.txt | sort -u -k1,1 | awk '{print $2}' | sort | uniq -c | sort +0 -1 -nr > top_farms_animals.id #get us the farm ids with how many cows are at that farm, Holsteins only #ISSUE PROBLEM
 
 awk '$2 ~ /^35/' top_farms_animals.id > top_WI.ids
 
