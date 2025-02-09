@@ -14,8 +14,9 @@ for x in $state
     do
         cd ./${x}
 
-        ln -s /data/breno/ped.noupg
-        
+        ln -s /data/breno/ped.noupg .
+        ln -s /data/breno/ped.noupg.sort .
+
         ulimit -s unlimited
         export OMP_STACKSIZE=1G
 
