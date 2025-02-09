@@ -1,6 +1,6 @@
 #This script was used in Gaurav's test day
 
-for x in top_62_TX_data.txt top_70_WI_data.txt
+for x in top_10_TX_data.txt top_4_WI_data.txt
         do
                 prefix=$(echo "$x" | cut -d "." -f 1 )
                 prefix2=$(echo "$prefix" | cut -d "_" -f 3 )
@@ -34,6 +34,6 @@ for x in top_62_TX_data.txt top_70_WI_data.txt
 
                 join -1 2 -2 1 Xref_id sorted_${prefix} | awk '{print $1, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $2}' > phen_${prefix2} 
 
-                mv phen_${prefix2} ./${prefix2}/.
+                cp phen_${prefix2} ./${prefix2}/.
         done
 
