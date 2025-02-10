@@ -17,7 +17,7 @@ for x in $state
         echo "OPTION method VCE" >>  renf90.par
         echo "OPTION use yams" >> renf90.par
         echo "OPTION maxrounds 50" >> renf90.par
-        echo "OPTION se_covar_function H2d_NE G_4_4_1_1/(G_4_4_1_1+G_5_5_1_1+R_1_1)" >> renf90.par
+        echo "OPTION se_covar_function H2d_${x} G_4_4_1_1/(G_4_4_1_1+G_5_5_1_1+R_1_1)" >> renf90.par
 
 
         ulimit -s unlimited
@@ -28,6 +28,6 @@ for x in $state
         cp aireml_testday_${x}.log aireml_log
 
         cd ..
-        
+
 done
 
