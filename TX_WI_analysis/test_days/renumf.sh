@@ -26,5 +26,8 @@ for x in $state
         echo renf90.par  | blupf90+ | tee aireml_testday_${x}.log
 
         cp aireml_testday_${x}.log aireml_log
+
+        cd ..
+        
 done
 
