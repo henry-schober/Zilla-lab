@@ -12,22 +12,22 @@ for x in $state
 
         echo renum_td.par | renumf90 | tee renum_testdaymilk_${x}.log
 
+
+        #for aireml
+        echo "OPTION method VCE" >>  renf90.par
+        echo "OPTION use yams" >> renf90.par
+        echo "OPTION maxrounds 50" >> renf90.par
+        echo "OPTION se_covar_function H2d_${x} G_4_4_1_1/(G_4_4_1_1+G_5_5_1_1+R_1_1)" >> renf90.par
+
+
+        ulimit -s unlimited
+        export OMP_STACKSIZE=128M
+
+        echo renf90.par  | blupf90+ | tee aireml_testday_${x}.log
+
+        cp aireml_testday_${x}.log aireml_log
+
         cd ..
+
 done
-
-
-#for aireml
-#echo "OPTION method VCE" >>  renf90.par
-#echo "OPTION use yams" >> renf90.par
-#echo "OPTION maxrounds 50" >> renf90.par
-#echo "OPTION se_covar_function H2d_NE G_4_4_1_1/(G_4_4_1_1+G_5_5_1_1+R_1_1)" >> renf90.par
-
-
-#ulimit -s unlimited
-#export OMP_STACKSIZE=128M
-
-#echo renf90.par  | blupf90+ | tee aireml_testday_tx.log
-
-
-#cp  aireml_testday_tx.log aireml_log_1
 
