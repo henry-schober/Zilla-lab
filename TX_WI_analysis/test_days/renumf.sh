@@ -10,7 +10,9 @@ for x in $state
         ulimit -s unlimited
         export OMP_STACKSIZE=1G
 
-        echo renum_td.par | renumf90 | tee renum_testdaymilk_${x}.log
+        sed "s:ped.noupg:new_ped_${x}:g" renum_td.par > renum_${x}.par
+
+        echo renum_${x}.par | renumf90 | tee renum_testdaymilk_${x}.log
 
 
         #for aireml
