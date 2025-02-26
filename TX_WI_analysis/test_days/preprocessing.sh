@@ -3,24 +3,17 @@
 # Goals: select only animals with at least 5 records (get 100,000 to 150,000 animals)
 #   exclude animals with less than 2 records during the summer months (get around a half million animals)
 
-# first part
+awk '$5==1' all_testday_seg.txt > firstlac_td.txt 
+#select for first lactation.
 
-    #ID_mgm file has both animal ID and mgm group which first two letters is either 35 (WI) or 74(TX)
+awk '$7>= 5 && $7 <= 305' firstlac_td.txt > filtered_testday.txt
+#this gets us our final filtered file that contains the testday info selecting for animals with the dim being between 5 and 305,
 
-    #awk '{print $1}' ID_mgm | sort | uniq -c | awk '$1>=5' | awk '{print $2}' > 5_rec_IDs
-
-    # combining the ID of 5+ rec animals to the original data file
-
-    #sort +0 -1 all_testday_seg.txt > sorted_all_testday_seg.txt
-    #join -1 1 -2 1 sorted_all_testday_seg.txt 5_rec_IDs > 5_rec_testdays.txt
-
-awk '$5==1 && $6>5' all_testday_seg.txt > 5_rec_firstlac_td.txt #select for first lactation and at least 5 test days total, 30715735 records
-
-awk '$7>= 5 && $7 <= 305' 5_rec_firstlac_td.txt > filtered_testday.txt #this gets us our final filtered file that contains the testday info selecting for animals with the dim being between 5 and 305, 26182006 records
-
-awk '{print $1}' filtered_testday.txt | uniq -c | sort -n | awk '$1>5' | awk '{print $2}' | sort > cross_5_rec_post_filter.id
+awk '{print $1}' filtered_testday.txt | uniq -c | awk '$1>5' | awk '{print $2}' | sort > cross_5_rec_post_filter.id 
+#here we get the original id of cows with DIM between 5 and 305 days, with at least 5 records
 
 sort +0 -1 filtered_testday.txt > filtered_testday_sorted.txt
+#sort the filtered file in order to combine it with the file of cows that have at least 5 records
 
 join -1 1 -2 1 cross_5_rec_post_filter.id filtered_testday_sorted.txt > joined_merged_filtered_data.txt
 
