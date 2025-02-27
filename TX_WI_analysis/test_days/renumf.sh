@@ -27,8 +27,13 @@ for x in $state
         echo renf90.par  | blupf90+ | tee aireml_testday_${x}.log
 
         cp aireml_testday_${x}.log aireml_log
-
+        
         cd ..
 
 done
 
+
+
+#new script :)
+#update the variances in your renf90.par file.
+#run blupf90+ and use those solutions for the correlations  using the OPTION method BLUP instead of VCE. remove all options, except for use_yams
