@@ -28,9 +28,9 @@ for x in temp_sum_WI.txt temp_sum_TX.txt
             sum=$((sum + value))
             echo "Current sum: $sum (Line: $line_number)"
             
-            # Check if the sum has reached or exceeded 200000
-            if [ "$sum" -ge 200000 ]; then
-                echo "Sum reached 200000 or more at line $line_number. Stopping."
+            # Check if the sum has reached or exceeded 180000
+            if [ "$sum" -ge 180000 ]; then
+                echo "Sum reached 180000 or more at line $line_number. Stopping."
 
                 head "-$line_number" top_${prefix}.ids | awk '{print $2}' > top_${line_number}_${prefix}.id
 
