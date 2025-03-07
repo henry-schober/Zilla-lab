@@ -27,26 +27,26 @@ for x in $state
         awk '{print $10}' daughter_renadd04.ped | sort +0 -1 > famous_daughters_id #single column with the daughter original ids
 
         #you can sort your original data file by the animal id column, and join with the id of the cows 
-        sort +(column -1)  -(column) original_data > sorted_data #where column is the column with animal ids (12 If I remember it right)
+        sort +11 -12 phen_${x} > sorted_phen_${x} #where column is the column with animal ids (12 If I remember it right)
 
-        join -1 1 -2 column famous_daughters_id sorted_data > famous_daughters.data
+        join -1 1 -2 12 famous_daughters_id sorted_phen_${x} > famous_daughters.phen_temp
         #your new joint file will have different columns, since column 1 will be the id
+        awk '{print $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $1}' famous_daughters.phen_temp > famous_daughters.phen
 
-        #run renumf90 again, using the reduced phen file and the original pedigree file that you used before
-        
-        #here we wanna join the bulls_xref (file containing bull id in renadd format that have more than 100 daughters and then join it by column $2 in renadd as that is the father column) 
+        sed 's:phen_TX:famous_daughters.phen:g' renum_${x}.par > renum_2_${x}.par
 
-        sed 's:renadd04.ped:daughter_renadd04.ped:g' renf90.par > renf90_famous.par
+        echo renum_2_${x}.par | renumf90 | tee renum_testdaymilk_2_${x}.log
+
         #for aireml
-        echo "OPTION method VCE" >>  renf90_famous.par
-        echo "OPTION use yams" >> renf90_famous.par
-        echo "OPTION se_covar_function H2d_${x} G_4_4_1_1/(G_4_4_1_1+G_5_5_1_1+R_1_1)" >> renf90_famous.par
+        echo "OPTION method VCE" >>  renf90.par
+        echo "OPTION use yams" >> renf90.par
+        echo "OPTION se_covar_function H2d_${x} G_4_4_1_1/(G_4_4_1_1+G_5_5_1_1+R_1_1)" >> renf90.par
 
 
         ulimit -s unlimited
         export OMP_STACKSIZE=128M
 
-        echo renf90_famous.par  | blupf90+ | tee aireml_testday_${x}.log
+        echo renf90.par  | blupf90+ | tee aireml_testday_${x}.log
 
         cp aireml_testday_${x}.log aireml_log
 
