@@ -19,3 +19,5 @@ join -1 1 -2 1 cross_5_rec_post_filter.id filtered_testday_sorted.txt > joined_m
 
 awk '$1 ~ /^HO/' joined_merged_filtered_data.txt > merged_filtered_data.txt #get holsteins only
 
+
+ awk '{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$4"_"$10,$11"_"substr($7,4),$12}' phen_TX_season > newfile
