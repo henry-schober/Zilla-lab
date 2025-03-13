@@ -33,7 +33,7 @@ for x in top_122_TX_data.txt top_11_WI_data.txt
 
                 sort +0 -1 ${prefix}_added_effects.txt > sorted_${prefix}
 
-                join -1 2 -2 1 Xref_id sorted_${prefix} | awk '{print $1, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $2}' > phen_${prefix2} 
+                join -1 2 -2 1 Xref_id sorted_${prefix} | awk '{print $1, $3, $4, $5, $6, $7, $8, $9, $10, $5"_"$11, $12, $2}' > phen_${prefix2} 
 
                 cp phen_${prefix2} ./${prefix2}/.
         done
