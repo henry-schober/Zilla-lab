@@ -39,7 +39,7 @@ for x in top_122_TX_data.txt top_11_WI_data.txt
 
                 sort +9 -10 phen_${prefix2}_temp > sorted_phen_${prefix2}
 
-                join -1 1 -2 10 HTD_4 sorted_phen_${prefix2} | awk '{print $2, $3, $4, $5, $6, $7, $8, $9, $10, $1, $11, $12}' > phen_${prefix2}
+                join -1 1 -2 10 HTD_4_${prefix2} sorted_phen_${prefix2} | awk '{print $2, $3, $4, $5, $6, $7, $8, $9, $10, $1, $11, $12}' > phen_${prefix2}
 
                 cp phen_${prefix2} ./${prefix2}/.
         done
