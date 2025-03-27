@@ -7,5 +7,5 @@ for x in $state
 
         sort +0 -1 top200_farms_zips > sorted_zips_farms
 
-        join -1 1 -2 1 mgm_ids_${x} sorted_zips_farms | awk '{print $1, $2, substr($3, 1, 5)}' > mgm_zips_${x}
+        join -1 1 -2 1 mgm_ids_${x} sorted_zips_farms | awk '{print $1, substr($3, 1, 5), $2, substr($2, 10, 17)}' > mgm_zips_${x}
 done
