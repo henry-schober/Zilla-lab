@@ -6,12 +6,12 @@ for x in top_122_TX_data.txt top_11_WI_data.txt
             prefix2=$(echo "$prefix" | cut -d "_" -f 3 )
             awk '{print $2, $3, $4, $5, $6, $7, $8, $9}' ${x} > ${prefix}_clean
 
-            # Remove rows where dim_testday > 305 and add new columns: age_of_animal_in_years, herd_test_day, stage_of_lactation
+            # Remove rows where dim_testday > 305 and add new columns: age_of_animal_in_months, herd_test_day, stage_of_lactation
             awk 'BEGIN { FS=OFS=" " }
             {
                     # Calculate age of the animal in years (birth to calving)
-                    cmd = "echo $(( ($(date -d "$3" +%s) - $(date -d "$2" +%s)) / (365*86400) ))"
-                    cmd | getline age_of_animal_in_years
+                    cmd = "echo $(( ($(date -d "$3" +%s) - $(date -d "$2" +%s)) / (30*86400) ))"
+                    cmd | getline age_of_animal_in_months
                     close(cmd)
 
                     # Calculate herd test day (adding dim_testday to calving date)
@@ -45,7 +45,7 @@ for x in top_122_TX_data.txt top_11_WI_data.txt
                     }
 
                     # Print original data along with the new columns
-                    print $0, age_of_animal_in_years, herd_test_day, stage_of_lactation
+                    print $0, age_of_animal_in_months, herd_test_day, stage_of_lactation
             }' "${prefix}_clean" > "${prefix}_added_effects.txt"
 
             #adding random animal effect (just their ID's from the crossreference)
