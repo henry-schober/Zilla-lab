@@ -36,7 +36,7 @@ for x in $state
         awk '{print $0, $11"_"$13}' phen_${x}_temp > phen_${x}_temp2
         awk '{print $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $14, $12}' phen_${x}_temp2 > phen_${x}_season
 
-        sed "s:phen_${x}:phen_${x}_season:g" renum_td.par > renum_${x}_season.par
+        sed "s:phen_TX:phen_${x}_season:g" renum_td.par > renum_${x}_season.par
 
         echo renum_${x}_season.par | renumf90 | tee renum_dim_season.log
 
