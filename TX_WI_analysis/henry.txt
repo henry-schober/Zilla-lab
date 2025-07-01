@@ -1,0 +1,50 @@
+#
+# Prepare and renum data to run
+# Modified from example from GWAS from Wang et al 2012 Gen Res
+# Modified for Henry to run a random regression GWAS with no weights
+
+# keep only the yams and the snp file option
+ 
+cp renf90.par renf90GWAS_pre.par
+cp renf90.par renf90GWAS_post.par
+
+#sed -e 's:map.txt:../map.txt:g' -i renf901.par  #include here your map file address if you dont want to copy
+#change string1 to string2 #how sed works if you need
+#sed 's:STRING1:STRING2:g' file_old > file_new 
+
+
+
+#for the pre.par files
+
+echo "OPTION map_file yourmapfilename" >> renf90GWAS_pre.par  
+echo "OPTION saveGInverse" >> renf90GWAS_pre.par 
+
+#run blupf90+ with renf90GWAS_pre.par 
+
+#in the same folder we will run postgsf90
+
+
+echo "OPTION map_file yourmapfilename" >> renf90GWAS_post.par
+echo "OPTION ReadGInverse" >> renf90GWAS_post.par
+echo "OPTION windows_variance 20" >> renf90GWAS_post.par
+echo "OPTION Manhattan_plot_R" >> renf90GWAS_post.par
+
+
+###For the intercept, the gwas file will be
+
+echo "OPTION postgs_trt_eff 1 6" >> renf90GWAS_post.par
+
+#then you run postgsf90 with the renf90GWAS_post.par
+
+
+###For the intercept, the gwas file will be
+cp renf90GWAS_post.par renf90GWAS_post_slope.par
+
+
+
+
+echo "OPTION postgs_trt_eff 1 7" >> renf90GWAS_post_slope.par
+
+#then you run postgsf90 with the renf90GWAS_post_slope.par
+
+#and you are all set 
