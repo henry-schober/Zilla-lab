@@ -36,7 +36,7 @@ for x in temp_sum_WI.txt temp_sum_TX.txt
 
                 sort top_${line_number}_${prefix}.id > top_${line_number}_${prefix}_sorted.id
 
-                grep -F -f top_${line_number}_${prefix}_sorted.id sorted_filtered_data.txt > top_${line_number}_${prefix}_data.txt
+                grep -Fw -f top_${line_number}_${prefix}_sorted.id sorted_filtered_data.txt > top_${line_number}_${prefix}_data.txt
                 break
             fi
         done < ${x} > sum_response_${prefix} 
