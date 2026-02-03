@@ -39,6 +39,21 @@ for i in {1..10}
         echo `cat temp_rv_CA` >> rv_CA_50k
 done
 
+#for the sd:
+
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../age_50k_CA
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../hxs_50k_CA
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../rv_50k_CA
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../h2_CA_50k
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../se_CA_50k
+
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../age_50k_NE
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../hxs_50k_NE
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../rv_50k_NE
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../h2_NE_50k
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../se_NE_50k
+
+
 #USE this for the two trait model!!
 #grep -A 2 'Genetic variance(s) for effect  2' aireml_log_$i | awk 'NR==2 {NE=$1} NR==3 {CA=$2} END {print NE, CA}'
 
