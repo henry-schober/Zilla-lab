@@ -32,11 +32,18 @@ done
 
 
 awk '{s+=$1}END{print "ave:",s/NR}' RS="\n" h2_ne_50k > mean_h2_10.mean
-
+ awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../h2_ne_50k > sd_h2_10.sd #calculate sd
 awk '{s+=$1}END{print "ave:",s/NR}' RS="\n" se_ne_50k > mean_se_10.mean
 
 awk '{s+=$1}END{print "ave:",s/NR}' RS="\n" hxs_50k > mean_hxs_10.mean
 awk '{s+=$1}END{print "ave:",s/NR}' RS="\n" age_50k > mean_age_10.mean
 awk '{s+=$1}END{print "ave:",s/NR}' RS="\n" rv_50k > mean_rv_10.mean
 
-mv *.mean mean_solutions/
+
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../h2_ne_50k
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../se_ne_50k
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../age_50k
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../hxs_50k
+awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../rv_50k
+
+
