@@ -19,3 +19,14 @@ awk '{s+=$1}END{print "ave:",s/NR}' RS="\n" rg_50k > rg.mean
 awk '{s+=$1}END{print "ave:",s/NR}' RS="\n" rg_se_50k > rg_se.mean
 
 mv *.mean gen_corr/
+
+#for the se
+
+ awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../rg_50k
+ awk '{sum+=$1; sumsq+=$1^2} END {print sqrt(sumsq/NR - (sum/NR)^2)}' ../rg_se_50k
+
+
+
+ #checking convergence problems
+
+ 
