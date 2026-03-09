@@ -3,8 +3,8 @@
 
 
 cd /work/breno/bruna_2_trait_100k/milk_two_trait #or
-# cd /work/breno/bruna_2_trait_100k/milk_two_trait #or
-# cd /work/breno/bruna_2_trait_100k/milk_two_trait
+# cd /work/breno/bruna_2_trait_100k/protein_two_trait #or
+# cd /work/breno/bruna_2_trait_100k/fat_two_trait
 mkdir gen_corr/
 
 for i in {1..10}
